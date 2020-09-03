@@ -1,3 +1,6 @@
+@extends('layouts.layout')
+@section('page_content')
+
 <h2>Titolo: {{ $movie->title }}</h2>
 
 <ul>
@@ -8,3 +11,5 @@
 <div>
   <a href="{{ route('movies.index')}}">Torna alla lista dei film</a>
 </div>
+
+@endsection

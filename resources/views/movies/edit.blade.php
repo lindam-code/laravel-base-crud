@@ -1,3 +1,6 @@
+@extends('layouts.layout')
+@section('page_content')
+
 <h1>Modifica il film: {{ $movie->title}} </h1>
 {{-- Messaggio di errore della validazione dei dati del form --}}
 @if ($errors->any())
@@ -38,3 +41,5 @@
     <input type="submit" value="Salva">
   </div>
 </form>
+
+@endsection
