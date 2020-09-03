@@ -16,7 +16,7 @@ class MovieController extends Controller
     {
       $movies = Movie::all();
 
-      return view('movies',compact('movies'));
+      return view('movies.index',compact('movies'));
     }
 
     /**
@@ -58,7 +58,7 @@ class MovieController extends Controller
       // }
       // dd($movie);
 
-      return view('show',compact('movie'));
+      return view('movies.show',compact('movie'));
     }
 
     /**
