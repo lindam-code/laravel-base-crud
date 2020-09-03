@@ -4,6 +4,7 @@
     @foreach ($movies as $movie)
       <li> Titolo: {{ $movie->title }}
         <a href={{ route('movies.show',$movie->id)}}>Vedi info film</a>
+        <a href={{ route('movies.edit',$movie->id)}}>Modifica info film</a>
       </li>
     @endforeach
   </ul>

@@ -37,14 +37,14 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-      // validare i dati passati nel form in base alle regole del database
+      // valida i dati passati nel form in base alle regole del database
       // le regole di validazione sono in una funzione
       $request->validate($this->getValidationRules());
 
-        // Prendo tutti dati inseriti nel form
+        // prende tutti dati inseriti nel form
         $data_request = $request->all();
 
-        // creo la nuova entità con i dati ineriti nel form
+        // crea la nuova entità con i dati ineriti nel form
         $new_movie = new Movie;
         // popolo una variabile con i dati passati nel form
         // $new_movie->title = $data_request['title'];
@@ -56,9 +56,9 @@ class MovieController extends Controller
         $new_movie->fill($data_request);
         $new_movie->save();
 
-        // prendo l'ultima entità appena inserita
+        // prende l'ultima entità appena inserita
         $movie = Movie::orderBy('id','desc')->first();
-        // la passo alla pagina show per mostrarla
+        // la passa alla pagina show per mostrarla
         return redirect()->route('movies.show',$movie);
     }
 
@@ -89,9 +89,9 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Movie $movie)
     {
-        //
+        return view('movies.edit',compact('movie'));
     }
 
     /**
@@ -101,9 +101,20 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Movie $movie)
     {
-        //
+      // valida i dati passati nel form in base alle regole del database
+      // le regole di validazione sono in una funzione
+      $request->validate($this->getValidationRules());
+
+      // prende tutti idati del form (sia che siano stati cabiati o no)
+      $data_request = $request->all();
+
+      // sostituisce i dati del database con quelli appena presi dal form
+      $movie->update($data_request);
+
+      // passa i nuovi dati alla pagina view pr vedere i cambiamenti
+      return redirect()->route('movies.show',$movie);
     }
 
     /**
