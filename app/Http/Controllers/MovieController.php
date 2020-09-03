@@ -46,10 +46,14 @@ class MovieController extends Controller
 
         // creo la nuova entità con i dati ineriti nel form
         $new_movie = new Movie;
-        $new_movie->title = $data_request['title'];
-        $new_movie->description = $data_request['description'];
-        $new_movie->year = $data_request['year'];
-        $new_movie->rating = $data_request['rating'];
+        // popolo una variabile con i dati passati nel form
+        // $new_movie->title = $data_request['title'];
+        // $new_movie->description = $data_request['description'];
+        // $new_movie->year = $data_request['year'];
+        // $new_movie->rating = $data_request['rating'];
+
+        // con il metodo fill popola direttamente con i dati passati nel form
+        $new_movie->fill($data_request);
         $new_movie->save();
 
         // prendo l'ultima entità appena inserita
